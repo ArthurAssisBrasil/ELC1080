@@ -10,7 +10,7 @@ int main(int argc, char const *argv[]) {
     FILE *f;
 
     /*arrumar nome do arquivo */
-    f = fopen("teste.txt","r");
+    f = fopen(argv[1],"r");
 
     if(f == NULL){
         printf("Nao foi possivel abrir arquivo! \n");
