@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1442337672 source:c:\users\brenda\documents\sistemas operacionais\trabalho1\principal.c
+	<pthread.h>
+	<stdlib.h>
+	<stdio.h>
+
+1442340162 source:c:\users\brenda\documents\sistemas operacionais\trabalho1\pessoas.c
+	<pthread.h>
+	<stdlib.h>
+	<stdio.h>
+	"pessoas.h"
+
+1442340119 c:\users\brenda\documents\sistemas operacionais\trabalho1\pessoas.h
+	<pthread.h>
+	<stdlib.h>
+	<stdio.h>
+
