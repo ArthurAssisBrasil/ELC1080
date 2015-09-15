@@ -4,14 +4,16 @@
 	<stdlib.h>
 	<stdio.h>
 
-1442340162 source:c:\users\brenda\documents\sistemas operacionais\trabalho1\pessoas.c
+1442340265 source:c:\users\brenda\documents\sistemas operacionais\trabalho1\pessoas.c
 	<pthread.h>
 	<stdlib.h>
 	<stdio.h>
 	"pessoas.h"
 
-1442340119 c:\users\brenda\documents\sistemas operacionais\trabalho1\pessoas.h
+1442340321 c:\users\brenda\documents\sistemas operacionais\trabalho1\pessoas.h
 	<pthread.h>
 	<stdlib.h>
 	<stdio.h>
+
+1442340364 source:c:\users\brenda\documents\sistemas operacionais\trabalho1\elevador.c
 

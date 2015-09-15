@@ -3,11 +3,13 @@
 #include <stdio.h>
 
 #include "pessoas.h"
+#include "elevador.h"
 
 
 int main(int argc, char const *argv[]) {
     FILE *f;
 
+    /*arrumar nome do arquivo */
     f = fopen("teste.txt","r");
 
     if(f == NULL){
