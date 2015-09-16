@@ -8,6 +8,8 @@
 
 #include "elevador.h"
 
+#define TEMPO_MIN 2000000000 //2 segundos: tempo minimo de para deixar a porta aberta
+
 void *elevador(){
   int i;
   printf("Comecou a thread Elevador!\n");

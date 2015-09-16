@@ -12,7 +12,8 @@
 
 typedef struct{
     int nVisitas;
-    int* andares;
+    int* andares;  //lista de andares a serem visitados
+    int* tempo_visita;
     int andar_atual;
     int id;
 }Pessoa;

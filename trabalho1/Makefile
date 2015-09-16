@@ -28,11 +28,14 @@ principal.o: principal.c
 pessoas.o: pessoas.c pessoas.h
 
 # descreve o objeto elevador.o, compilado de forma implicita
-carta.o: elevador.c elevador.h
+elevador.o: elevador.c elevador.h
+
+# descreve o objeto memo.o, compilado de forma implicita
+memo.o: memo.c memo.h
 
 
 # programa principal, compilado de forma implicita
-principal: principal.o pessoas.o elevador.o
+principal: principal.o pessoas.o elevador.o memo.o
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 

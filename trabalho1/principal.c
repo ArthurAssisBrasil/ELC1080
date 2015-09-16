@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "memo.h"
 #include "pessoas.h"
 #include "elevador.h"
 
@@ -31,14 +32,14 @@ int main(int argc, char const *argv[]) {
             pthread_t pessoa_t[n_pessoas];
             Pessoa p[n_pessoas];
 
-            while(c != '\n'){  //avan�a at� nova linha
+            while(c != '\n'){  //avanca ate nova linha
                 c = fgetc(f);
             }
 
             //Cria threads para n pessoas
             for(i=0; i<n_pessoas; i++){
                 p[i].id = i+1;  //identificação de pessoa
-                p[i].andar_atual = 0;
+                p[i].andar_atual = 0; //inicializa todas as pessoas no terreo
                 pthread_create(&(pessoa_t[i]), NULL, pessoa, (void *)&(p[i]));
             }
             pthread_create(&elevador_t,NULL,elevador,NULL);

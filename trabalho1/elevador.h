@@ -8,6 +8,9 @@
 
 typedef struct elevador{
   int* andar;
+  int* botoes;
+  int sentido;
+  int capacidade;
 }Elevador;
 
 void *elevador();
