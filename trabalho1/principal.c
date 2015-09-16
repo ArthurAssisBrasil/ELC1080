@@ -19,8 +19,9 @@ int main(int argc, char const *argv[]) {
 
     }else{
         while(!feof(f)){
-            int n_pessoas;
+            int n_pessoas, n_visitas;
             int i = 0;
+            int k = 0;
             char c;
 
             if(fscanf(f,"%d",&n_pessoas) < 0)
@@ -36,10 +37,28 @@ int main(int argc, char const *argv[]) {
                 c = fgetc(f);
             }
 
-            //Cria threads para n pessoas
             for(i=0; i<n_pessoas; i++){
                 p[i].id = i+1;  //identificação de pessoa
                 p[i].andar_atual = 0; //inicializa todas as pessoas no terreo
+
+                fscanf(f,"%d", &n_visitas);
+                p[i].andares = (int*)memo_aloca(n_visitas * sizeof(int));
+                p[i].tempo_visita = (int*)memo_aloca(n_visitas * sizeof(int));
+
+                for(k=0; k<n_visitas; k++){
+                  while(c != ' '){  //avanca ate proxima informacao
+                      c = fgetc(f);
+                  }
+                  fscanf(f,"%d", &p[i].andares[k]);
+                  while(c != ' '){  ///avanca ate proxima informacao
+                      c = fgetc(f);
+                  }
+                  fscanf(f,"%d", &p[i].tempo_visita[k]);
+                }
+            }
+
+            //Cria threads para n pessoas
+            for(i=0; i<n_pessoas; i++){
                 pthread_create(&(pessoa_t[i]), NULL, pessoa, (void *)&(p[i]));
             }
             pthread_create(&elevador_t,NULL,elevador,NULL);
