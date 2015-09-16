@@ -13,7 +13,7 @@
 typedef struct{
     int nVisitas;
     int* andares;  //lista de andares a serem visitados
-    int* tempo_visita;
+    unsigned long int* tempo_visita;
     int andar_atual;
     int id;
 }Pessoa;

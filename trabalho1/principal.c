@@ -33,9 +33,8 @@ int main(int argc, char const *argv[]) {
             pthread_t pessoa_t[n_pessoas];
             Pessoa p[n_pessoas];
 
-            while(c != '\n'){  //avanca ate nova linha
+            while(c != '\n')  //avanca ate nova linha
                 c = fgetc(f);
-            }
 
             for(i=0; i<n_pessoas; i++){
                 p[i].id = i+1;  //identificação de pessoa
@@ -43,19 +42,32 @@ int main(int argc, char const *argv[]) {
 
                 fscanf(f,"%d", &n_visitas);
                 p[i].andares = (int*)memo_aloca(n_visitas * sizeof(int));
-                p[i].tempo_visita = (int*)memo_aloca(n_visitas * sizeof(int));
+                p[i].tempo_visita = (unsigned long int*)memo_aloca(n_visitas * sizeof(unsigned long int));
 
+                /* para cada pessoa preenche os vetores 'andares' e 'tempo_visita'
+                   de acordo com o numero de visitas que cada um realiza */
                 for(k=0; k<n_visitas; k++){
-                  while(c != ' '){  //avanca ate proxima informacao
+                  while(c != ' ')  //avanca ate proxima informacao
                       c = fgetc(f);
-                  }
+
                   fscanf(f,"%d", &p[i].andares[k]);
-                  while(c != ' '){  ///avanca ate proxima informacao
+                  while(c != ' ')  ///avanca ate proxima informacao
                       c = fgetc(f);
-                  }
-                  fscanf(f,"%d", &p[i].tempo_visita[k]);
+
+                  fscanf(f,"%lu", &p[i].tempo_visita[k]);
                 }
+
+                /*teste para verificar leitura do arquivo
+
+                  printf("\npessoa %d realiza %d visitas -", i+1, n_visitas);
+                  for(k=0; k<n_visitas; k++){
+                    printf("%d %lu ",p[i].andares[k], p[i].tempo_visita[k]);
+                  }
+                  printf("\n");
+                */
             }
+
+
 
             //Cria threads para n pessoas
             for(i=0; i<n_pessoas; i++){
