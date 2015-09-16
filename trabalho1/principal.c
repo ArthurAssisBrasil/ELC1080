@@ -27,23 +27,27 @@ int main(int argc, char const *argv[]) {
 
             printf("numero de pessoas: %d\n\n", n_pessoas);
 
+            pthread_t elevador_t;
             pthread_t pessoa_t[n_pessoas];
             Pessoa p[n_pessoas];
 
-            while(c != '\n'){  //avança até nova linha
+            while(c != '\n'){  //avanï¿½a atï¿½ nova linha
                 c = fgetc(f);
             }
 
             //Cria threads para n pessoas
             for(i=0; i<n_pessoas; i++){
-                p[i].id = i;
+                p[i].id = i+1;  //identificaÃ§Ã£o de pessoa
+                p[i].andar_atual = 0;
                 pthread_create(&(pessoa_t[i]), NULL, pessoa, (void *)&(p[i]));
             }
+            pthread_create(&elevador_t,NULL,elevador,NULL);
 
             // Espera que as threads terminem
             for(i=0; i<n_pessoas; i++){
                 pthread_join(pessoa_t[i], NULL);
             }
+            pthread_join(elevador_t,NULL);
         }
 
     }

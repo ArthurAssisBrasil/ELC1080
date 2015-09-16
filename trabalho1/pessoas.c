@@ -1,6 +1,6 @@
 /*
 * pessoas.c
-* TAD que implementa funções das threads de Pessoa.
+* TAD que implementa funï¿½ï¿½es das threads de Pessoa.
 */
 
 #include <pthread.h>
@@ -11,12 +11,14 @@
 
 void *pessoa(void *vargp){
     int i = 0;
-    Pessoa *a = (Pessoa*) vargp;
+    Pessoa *p = (Pessoa*) vargp;
 
-    printf("Comecou a thread pessoa %d\n", a->id);
+    printf("Comecou a thread pessoa %d\n", p->id);
     // Faz um trabalho qualquer
     for(i = 0; i < 1000000; i++);
-    printf("Terminou a thread pessoa %d\n", a->id);
+    
+    if(p->andar_atual == 0)
+    printf("Terminou a thread pessoa %d\n", p->id);
 
     pthread_exit((void *)NULL);
 }

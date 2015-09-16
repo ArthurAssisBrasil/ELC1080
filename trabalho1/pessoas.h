@@ -3,7 +3,7 @@
 
 /*
 * pessoas.c
-* TAD que implementa funções das threads de Pessoa.
+* TAD que implementa funï¿½ï¿½es das threads de Pessoa.
 */
 
 #include <pthread.h>
@@ -13,6 +13,7 @@
 typedef struct{
     int nVisitas;
     int* andares;
+    int andar_atual;
     int id;
 }Pessoa;
 

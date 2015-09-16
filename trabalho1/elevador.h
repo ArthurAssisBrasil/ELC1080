@@ -3,14 +3,14 @@
 
 /*
 * elevador.h
-* TAD que implementa funções das threads de Elevador.
+* TAD que implementa funï¿½ï¿½es das threads de Elevador.
 */
 
 typedef struct elevador{
   int* andar;
 }Elevador;
 
-
-/* funções */
+void *elevador();
+/* funcoes */
 
 #endif
