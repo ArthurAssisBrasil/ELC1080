@@ -6,6 +6,8 @@
 #include "pessoas.h"
 #include "elevador.h"
 
+pthread_mutex_t mutex;
+pthread_cond_t cond;
 
 int main(int argc, char const *argv[]) {
     FILE *f;
@@ -67,8 +69,6 @@ int main(int argc, char const *argv[]) {
                 */
             }
 
-
-
             //Cria threads para n pessoas
             for(i=0; i<n_pessoas; i++){
                 pthread_create(&(pessoa_t[i]), NULL, pessoa, (void *)&(p[i]));
@@ -80,6 +80,12 @@ int main(int argc, char const *argv[]) {
                 pthread_join(pessoa_t[i], NULL);
             }
             pthread_join(elevador_t,NULL);
+
+            for(i=0; i<n_pessoas; i++){
+              memo_libera(p[i].andares);
+              memo_libera(p[i].tempo_visita);
+            }
+            //memo_relatorio();
         }
 
     }
