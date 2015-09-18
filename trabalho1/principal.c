@@ -20,7 +20,7 @@ int main(int argc, char const *argv[]) {
         exit(1);
 
     }else{
-        while(!feof(f)){
+        while(feof(f) == 0){
             int n_pessoas, n_visitas;
             int i = 0;
             int k = 0;
@@ -34,6 +34,12 @@ int main(int argc, char const *argv[]) {
             pthread_t elevador_t;
             pthread_t pessoa_t[n_pessoas];
             Pessoa p[n_pessoas];
+
+            // Cria o mutex
+            pthread_mutex_init(&mutex, NULL);
+
+            // Cria a variavel de condicao
+            pthread_cond_init(&cond, NULL);
 
             while(c != '\n')  //avanca ate nova linha
                 c = fgetc(f);
@@ -89,6 +95,13 @@ int main(int argc, char const *argv[]) {
         }
 
     }
+
+
+    // Destroi o mutex
+    pthread_mutex_destroy(&mutex);
+
+    // Destroi a variavel condicional
+    pthread_cond_destroy(&cond);
 
     pthread_exit((void *)NULL);
     fclose(f);

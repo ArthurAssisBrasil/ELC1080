@@ -3,10 +3,9 @@
 
 /*
 * pessoas.c
-* TAD que implementa fun��es das threads de Pessoa.
+* TAD que implementa funcoes das threads de Pessoa
 */
 
-#include <pthread.h>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -19,5 +18,6 @@ typedef struct{
 }Pessoa;
 
 void *pessoa(void *vargp);
+void name();
 
 #endif
