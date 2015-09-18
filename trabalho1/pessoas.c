@@ -8,6 +8,7 @@
 #include <stdio.h>
 
 #include "pessoas.h"
+#include "elevador.h"
 
 void *pessoa(void *vargp){
     int i = 0;
@@ -25,7 +26,7 @@ void *pessoa(void *vargp){
 }
 
 
-void name() {
+void acessa_elevador(){
   printf("funcao muito louca \n");
   return;
 }
