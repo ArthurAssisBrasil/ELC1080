@@ -14,7 +14,7 @@ void *elevador(void *var){
   int i;
   Elevador *e = (Elevador*) var;
   printf("Comecou a thread Elevador!\n");
-  e->capacidade = 0;
+  e->lotacao = 0;
   for(i = 0; i < 1000000; i++);
 
   //if(p->andar_atual == 0)

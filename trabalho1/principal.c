@@ -88,6 +88,8 @@ int main(int argc, char const *argv[]) {
             for(i=0; i<n_pessoas; i++){
                 pthread_join(pessoa_t[i], NULL);
             }
+
+            // Espera que a thread elevador termine
             pthread_join(elevador_t,NULL);
 
             for(i=0; i<n_pessoas; i++){

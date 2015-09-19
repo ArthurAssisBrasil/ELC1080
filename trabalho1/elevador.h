@@ -6,11 +6,13 @@
 * TAD que implementa fun��es das threads de Elevador.
 */
 
+#define CAPACIDADE 3
+
 typedef struct elevador{
   int* andar;
   int* botoes;
   int sentido;
-  int capacidade;
+  int lotacao;
 }Elevador;
 
 void *elevador(void *var);

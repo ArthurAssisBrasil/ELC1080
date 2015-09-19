@@ -40,9 +40,12 @@ void *pessoa(void *vargp){
 void acessa_elevador(void *vargp){
   Pessoa *p = (Pessoa*) vargp;
 
-  if(p->e.capacidade < 4) {
+  if(p->e.lotacao <= CAPACIDADE) {
         printf("\nThread %d: Entrou no elevador\n", p->id);
-        p->e.capacidade++;
+        printf("\nLotacao atual: %d\n", p->e.lotacao);
+        p->e.lotacao++; //altera lotação apenas localmente: CORRIGIR
+        printf("\nLotacao atual: %d\n", p->e.lotacao);
+
         pthread_cond_wait(&cond_pessoa, &mutex_pessoa);
         printf("Thread %d: Acabou a espera\n", p->id);
     }
@@ -56,7 +59,7 @@ void acessa_elevador(void *vargp){
 
 void sai_elevador(void *vargp){
   Pessoa *p = (Pessoa*) vargp;
-  p->e.capacidade --;
+  p->e.lotacao --;
   printf("Chegou aqui\n");
   pthread_exit((void *)NULL);
 
