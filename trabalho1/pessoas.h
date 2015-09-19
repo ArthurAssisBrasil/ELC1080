@@ -6,8 +6,11 @@
 * TAD que implementa funcoes das threads de Pessoa
 */
 
+#include <pthread.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+#include "elevador.h"
 
 typedef struct{
     int nVisitas;
@@ -15,9 +18,11 @@ typedef struct{
     unsigned long int* tempo_visita;
     int andar_atual;
     int id;
+    Elevador e;
 }Pessoa;
 
 void *pessoa(void *vargp);
-void name();
+void acessa_elevador(void *vargp);
+void sai_elevador(void *vargp);
 
 #endif

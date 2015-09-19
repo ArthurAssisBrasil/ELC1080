@@ -34,6 +34,8 @@ int main(int argc, char const *argv[]) {
             pthread_t elevador_t;
             pthread_t pessoa_t[n_pessoas];
             Pessoa p[n_pessoas];
+            Elevador e;
+
 
             // Cria o mutex
             pthread_mutex_init(&mutex, NULL);
@@ -66,7 +68,6 @@ int main(int argc, char const *argv[]) {
                 }
 
                 /*teste para verificar leitura do arquivo
-
                   printf("\npessoa %d realiza %d visitas -", i+1, n_visitas);
                   for(k=0; k<n_visitas; k++){
                     printf("%d %lu ",p[i].andares[k], p[i].tempo_visita[k]);
@@ -75,11 +76,13 @@ int main(int argc, char const *argv[]) {
                 */
             }
 
+            //Cria thread para elevador
+            pthread_create(&elevador_t,NULL,elevador,(void*)&e);
+
             //Cria threads para n pessoas
             for(i=0; i<n_pessoas; i++){
                 pthread_create(&(pessoa_t[i]), NULL, pessoa, (void *)&(p[i]));
             }
-            pthread_create(&elevador_t,NULL,elevador,NULL);
 
             // Espera que as threads terminem
             for(i=0; i<n_pessoas; i++){
@@ -95,6 +98,7 @@ int main(int argc, char const *argv[]) {
         }
 
     }
+    printf("\nFIM\n");
 
 
     // Destroi o mutex
