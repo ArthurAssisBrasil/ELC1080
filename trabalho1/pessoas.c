@@ -32,7 +32,7 @@ void *pessoa(void *vargp){
 
     if(p->andar_atual == 0)
     printf("Terminou a thread pessoa %d\n", p->id);
-
+    pthread_cond_destroy(&cond_pessoa);
     pthread_exit((void *)NULL);
 }
 
@@ -50,17 +50,17 @@ void acessa_elevador(void *vargp){
         printf("Thread %d: Acabou a espera\n", p->id);
     }
     else {
-        sleep(1);
-        printf("Thread %d: Sinalizando a outra thread\n", p->id);
+        sleep(5);
+        printf("Sinaliza outras threads\n");
         pthread_cond_signal(&cond_pessoa);
     }
-    pthread_exit((void *)NULL);
+    //pthread_exit((void *)NULL);
 }
 
 void sai_elevador(void *vargp){
   Pessoa *p = (Pessoa*) vargp;
+  printf("Saiu do Elevador\n");
   p->e.lotacao --;
-  printf("Chegou aqui\n");
   pthread_exit((void *)NULL);
 
 }
