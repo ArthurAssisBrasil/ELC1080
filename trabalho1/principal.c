@@ -82,7 +82,6 @@ int main(int argc, char const *argv[]) {
             for(i=0; i<n_pessoas; i++){
                 pthread_create(&(pessoa_t[i]), NULL, pessoa, (void *)&(p[i]));
             }
-            printf("\naqui\n");
 
             // Espera que as threads terminem
             for(i=0; i<n_pessoas; i++){

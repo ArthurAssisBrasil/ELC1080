@@ -55,9 +55,9 @@ void acessa_elevador(void* vargp){
     pthread_cond_wait(&tem_vaga, &exclusao_mutua);
 
   if(lotacao_elevador <= CAPACIDADE) {
-        printf("\nThread %d: Entrou no elevador\n", p->id);
+        printf("Thread %d: Entrou no elevador\n", p->id);
         ++(lotacao_elevador);
-        printf("\nLotacao atual: %d\n", lotacao_elevador);
+        printf("Lotacao atual: %d\n", lotacao_elevador);
 
         pthread_cond_signal(&tem_gente);
 

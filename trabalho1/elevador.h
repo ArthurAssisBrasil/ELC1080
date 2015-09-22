@@ -12,7 +12,6 @@ typedef struct elevador{
   int* andar;
   int* botoes;
   int estado; /* estado pode ser: parado, descendo ou subindo */
-  int lotacao;
 }Elevador;
 
 /* funcoes */

@@ -13,11 +13,10 @@
 void *elevador(void *var){
   int i;
   Elevador *e = (Elevador*) var;
+  e->estado = 0; //elevador inicialmente parado
   printf("Comecou a thread Elevador!\n");
-  e->lotacao = 0;
   for(i = 0; i < 100000000; i++);
 
   printf("Terminou a thread Elevador\n");
   pthread_exit((void *)NULL);
-
 }
