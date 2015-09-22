@@ -17,7 +17,6 @@ void *elevador(void *var){
   e->lotacao = 0;
   for(i = 0; i < 100000000; i++);
 
-  //if(p->andar_atual == 0)
   printf("Terminou a thread Elevador\n");
   pthread_exit((void *)NULL);
 

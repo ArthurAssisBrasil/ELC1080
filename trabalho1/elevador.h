@@ -3,19 +3,19 @@
 
 /*
 * elevador.h
-* TAD que implementa fun��es das threads de Elevador.
+* TAD que implementa funcoes das threads de Elevador.
 */
 
-#define CAPACIDADE 3
+//#define CAPACIDADE 3
 
 typedef struct elevador{
   int* andar;
   int* botoes;
-  int sentido;
+  int estado; /* estado pode ser: parado, descendo ou subindo */
   int lotacao;
 }Elevador;
 
-void *elevador(void *var);
 /* funcoes */
+void *elevador(void *var);
 
 #endif

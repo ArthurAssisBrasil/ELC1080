@@ -12,13 +12,16 @@
 
 #include "elevador.h"
 
+#define CAPACIDADE 3
+
 typedef struct{
     int nVisitas;
     int* andares;  //lista de andares a serem visitados
     unsigned long int* tempo_visita;
     int andar_atual;
     int id;
-    Elevador e;
+    //int lotacao_elevador;
+    Elevador* e;
 }Pessoa;
 
 void *pessoa(void *vargp);
