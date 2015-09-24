@@ -11,11 +11,14 @@ enum Estado {DESCENDO, PARADO, SUBINDO};
 
 typedef struct elevador{
   int* andar;
-  int* botoes;
+  int* botoes_ext;
+  int* botoes_int;
   enum Estado estado;
 }Elevador;
 
 /* funcoes */
 void *elevador(void *var);
+void movimenta_elevador();
+
 
 #endif

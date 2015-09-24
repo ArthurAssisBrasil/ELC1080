@@ -11,6 +11,7 @@
 #include <stdio.h>
 
 #include "elevador.h"
+#include "monitor.h"
 
 #define CAPACIDADE 3
 
@@ -20,12 +21,14 @@ typedef struct{
     unsigned long int* tempo_visita;
     int andar_atual;
     int id;
-    //int lotacao_elevador;
     Elevador* e;
+    Monitor* monitor;
 }Pessoa;
 
 void *pessoa(void *vargp);
-void acessa_elevador(void *vargp);
-void sai_elevador(void *vargp);
+void acessa_elevador(Pessoa *p);
+void sai_elevador(Pessoa *p);
+void solicita_elevador(Pessoa* p);
+void solicita_andar(Pessoa* p);
 
 #endif

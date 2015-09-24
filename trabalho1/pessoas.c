@@ -14,9 +14,9 @@
 
 int lotacao_elevador;
 
-pthread_mutex_t exclusao_mutua;
-pthread_cond_t tem_vaga;
-pthread_cond_t tem_gente;
+//pthread_mutex_t p->monitor->exclusao_mutua;
+//pthread_cond_t p->monitor->tem_vaga;
+//pthread_cond_t p->monitor->tem_gente;
 
 
 void *pessoa(void *vargp){
@@ -24,59 +24,74 @@ void *pessoa(void *vargp){
     Pessoa *p = (Pessoa*) vargp;
 
     // Cria o mutex
-    pthread_mutex_init(&exclusao_mutua, NULL);
+    p->monitor = (Monitor*)memo_aloca(sizeof(Monitor));
+    inicializa_mutex(p->monitor->exclusao_mutua);
 
     // Cria variaveis de condicao
-    pthread_cond_init(&tem_vaga, NULL);
-    pthread_cond_init(&tem_gente, NULL);
+    inicializa_varcond(p->monitor->tem_vaga);
+    inicializa_varcond(p->monitor->tem_gente);
 
 
     printf("Comecou a thread pessoa %d\n", p->id);
     // Faz um trabalho qualquer
     for(i = 0; i < 1000000; i++);
-    acessa_elevador(vargp);
-    sai_elevador(vargp);
 
-    //quando a thread retorna ao terro encerra a thread
+    acessa_elevador(p);
+    sai_elevador(p);
+
+    //quando a thread retorna ao térro encerra a thread
     if(p->andar_atual == 0)
       pthread_exit((void *)NULL);
 
     printf("Terminou a thread pessoa %d\n", p->id);
-    pthread_cond_destroy(&tem_vaga);
-    pthread_cond_destroy(&tem_gente);
+    destroi_varacond(p->monitor->tem_vaga);
+    destroi_varacond(p->monitor->tem_gente);
+    destroi_mutex(p->monitor->exclusao_mutua);
+
     pthread_exit((void *)NULL);
 }
 
-void acessa_elevador(void* vargp){
-  Pessoa *p = (Pessoa*) vargp;
-  pthread_mutex_lock(&exclusao_mutua);
+void acessa_elevador(Pessoa *p){
+  //Pessoa *p = (Pessoa*) vargp;
+  tranca_mutex(p->monitor->exclusao_mutua);
 
   while (lotacao_elevador == CAPACIDADE) //aguarda liberação de vaga no elevador
-    pthread_cond_wait(&tem_vaga, &exclusao_mutua);
+    espera_sinalizacao(p->monitor->tem_vaga, p->monitor->exclusao_mutua);
 
   if(lotacao_elevador <= CAPACIDADE) {
         printf("Thread %d: Entrou no elevador\n", p->id);
         ++(lotacao_elevador);
         printf("Lotacao atual: %d\n", lotacao_elevador);
 
-        pthread_cond_signal(&tem_gente);
+        sinaliza_thread(p->monitor->tem_gente);
 
   }else{
     printf("Sinaliza outras threads\n");
-    pthread_cond_signal(&tem_gente);
+    sinaliza_thread(p->monitor->tem_gente);
   }
-  pthread_mutex_unlock(&exclusao_mutua);
+  libera_mutex(p->monitor->exclusao_mutua);
 }
 
 
-void sai_elevador(void *vargp){
-  Pessoa *p = (Pessoa*) vargp;
-  pthread_mutex_lock(&exclusao_mutua);
+void sai_elevador(Pessoa *p){
+  //Pessoa *p = (Pessoa*) vargp;
+  tranca_mutex(p->monitor->exclusao_mutua);
   while (lotacao_elevador == 0)
-    pthread_cond_wait(&tem_gente, &exclusao_mutua);
+    espera_sinalizacao(p->monitor->tem_gente, p->monitor->exclusao_mutua);
 
   --(lotacao_elevador);
   printf("Thread %d saiu do Elevador\n", p->id);
-  pthread_cond_signal(&tem_vaga);
-  pthread_mutex_unlock(&exclusao_mutua);
+  sinaliza_thread(p->monitor->tem_vaga);
+  libera_mutex(p->monitor->exclusao_mutua);
+}
+
+void solicita_elevador(Pessoa *p){
+  printf("%d ", p->id);
+
+
+}
+
+void solicita_andar(Pessoa *p){
+  printf("%d ", p->id);
+
 }
