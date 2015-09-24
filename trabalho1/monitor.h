@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define CAPACIDADE 3
+
 typedef struct{
     pthread_mutex_t exclusao_mutua;
     pthread_cond_t tem_vaga;

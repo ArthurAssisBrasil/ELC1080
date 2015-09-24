@@ -13,7 +13,6 @@
 #include "elevador.h"
 #include "monitor.h"
 
-#define CAPACIDADE 3
 
 typedef struct{
     int nVisitas;
