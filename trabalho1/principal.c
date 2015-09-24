@@ -77,7 +77,6 @@ int main(int argc, char const *argv[]) {
 
             //Cria thread para elevador
             pthread_create(&elevador_t, NULL , elevador ,(void*)&e);
-            e.lotacao = 0;
             //Cria threads para n pessoas
             for(i=0; i<n_pessoas; i++){
                 pthread_create(&(pessoa_t[i]), NULL, pessoa, (void *)&(p[i]));

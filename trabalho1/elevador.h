@@ -7,11 +7,12 @@
 */
 
 //#define CAPACIDADE 3
+enum Estado {DESCENDO, PARADO, SUBINDO};
 
 typedef struct elevador{
   int* andar;
   int* botoes;
-  int estado; /* estado pode ser: parado, descendo ou subindo */
+  enum Estado estado;
 }Elevador;
 
 /* funcoes */

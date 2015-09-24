@@ -46,12 +46,12 @@ void *pessoa(void *vargp){
     pthread_cond_destroy(&tem_gente);
     pthread_exit((void *)NULL);
 }
-//32237370
+
 void acessa_elevador(void* vargp){
   Pessoa *p = (Pessoa*) vargp;
   pthread_mutex_lock(&exclusao_mutua);
 
-  while (lotacao_elevador == CAPACIDADE)
+  while (lotacao_elevador == CAPACIDADE) //aguarda liberação de vaga no elevador
     pthread_cond_wait(&tem_vaga, &exclusao_mutua);
 
   if(lotacao_elevador <= CAPACIDADE) {
